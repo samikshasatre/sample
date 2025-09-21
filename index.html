@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Dearest Dudu </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Pacifico&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #ffebee, #fce4ec, #f8bbd0); /* Gradient pink background */
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="%23e91e63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>') 15 15, auto;
+            overflow-x: hidden;
+        }
+
+        /* --- Floating Hearts Background Animation --- */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            background-color: #e91e63;
+            animation: floatUp 8s infinite ease-in-out;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+                border-radius: 50%;
+                width: 0;
+                height: 0;
+            }
+            20% {
+                opacity: 0.8;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+            }
+            100% {
+                transform: translateY(-20vh) rotate(360deg);
+                opacity: 0;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+            }
+        }
+
+        .bubble {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .message-box {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(233, 30, 99, 0.2);
+        }
+
+        .heart-icon {
+            color: #e91e63;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #e91e63, #ff69b4);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(233, 30, 99, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(to right, #c2185b, #e91e63);
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animated card transitions */
+        .card-transition {
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        .card-hidden {
+            opacity: 0;
+            transform: scale(0.9);
+            position: absolute;
+            pointer-events: none;
+        }
+        .card-visible {
+            opacity: 1;
+            transform: scale(1);
+            position: relative;
+            pointer-events: auto;
+        }
+
+        /* Dudu bouncing animation */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .bouncing-dudu {
+            animation: bounce 1.5s infinite ease-in-out;
+        }
+
+        /* Typing animation for confession text */
+        .typing-animation {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+
+        /* The typing effect */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        /* The typewriter cursor effect */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: black }
+        }
+
+        /* Pulsating heart animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .pulsating-heart {
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Sparkle effect */
+        .sparkle {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle 1s forwards;
+        }
+
+        @keyframes sparkle {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(1);
+            }
+        }
+
+        /* Love quote styling */
+        .love-quote {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: #e91e63;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        /* Romantic photo frame */
+        .photo-frame {
+            border: 8px solid #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            background: #fff;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ffcce6, #ff99cc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e91e63;
+            font-size: 3rem;
+        }
+
+        /* Romantic text highlight */
+        .highlight {
+            background: linear-gradient(120deg, rgba(255,105,180,0.3) 0%, rgba(255,105,180,0) 100%);
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        /* Floating kisses */
+        .kiss {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0;
+            pointer-events: none;
+            animation: fly 4s linear forwards;
+        }
+
+        @keyframes fly {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--end-x), var(--end-y)) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="https://archive.org/download/romantic-piano-music/RomanticPianoMusic.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Header and theme description -->
+    <div class="text-center mb-10">
+        <h1 class="text-5xl font-bold text-[#e91e63] font-[Pacifico] bubble">To my Dearest Dudu</h1>
+        <p class="mt-2 text-gray-600">This is for you, with all my heart.</p>
+    </div>
+
+    <!-- Main Confession Card Wrapper -->
+    <div class="message-box max-w-lg w-full text-center p-6 relative h-[500px] overflow-hidden">
+        <!-- Welcome / Intro Window -->
+        <div id="welcome-card" class="card-transition card-visible">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 mx-auto text-[#ff69b4] pulsating-heart" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+            </svg>
+            <h2 class="text-3xl font-bold text-gray-800 mt-4">My Sweet Dudu </h2>
+            <p class="mt-4 text-gray-600">I've created something special just for you. Are you ready to feel all my love?</p>
+            <div class="photo-frame mt-6">
+                <div class="photo-placeholder">
+                    ❤️
+                </div>
+            </div>
+            <button id="next-to-story-btn" class="mt-6 btn-primary">
+                Begin Our Love Story
+            </button>
+        </div>
+
+        <!-- "Our Story" & "Reasons Why" Section -->
+        <div id="story-card" class="card-transition card-hidden">
+            <h2 class="text-3xl font-bold text-gray-800">Reasons I Adore You</h2>
+            <p class="love-quote">"You are my sunshine, my only sunshine"</p>
+            <div id="reason-container" class="mt-4 flex flex-col items-center h-64 overflow-y-auto py-2 px-4">
+                <!-- Reasons will be injected here by JS -->
+            </div>
+            <button id="next-to-confession-btn" class="mt-6 btn-primary">
+                My Heart's Message
+            </button>
+        </div>
+
+        <!-- Confession Window -->
+        <div id="confession-card" class="card-transition card-hidden">
+            <h2 class="text-4xl font-bold text-gray-800">My Dearest Dudu,</h2>
+            <div class="mt-4 text-lg text-gray-700 leading-relaxed italic text-left px-4 max-h-80 overflow-y-auto">
+                <p class="mb-4">From the moment I met you, my world became <span class="highlight">brighter</span> and so much more wonderful. You are my sunshine, my comfort, and my greatest adventure.</p>
+                <p class="mb-4">Every day with you is a new memory I cherish. You've shown me what true happiness is, and I want to spend forever making you feel as <span class="highlight">special</span> as you are to me.</p>
+                <p class="mb-4">Your smile lights up my world, your laughter is my favorite melody, and your love is the greatest gift I've ever received.</p>
+                <p>I <span class="highlight">love you</span> more than words can say, more than the stars in the sky, more than forever.</p>
+            </div>
+            <button id="next-to-surprise-btn" class="mt-4 btn-primary">
+                A Final Surprise!
+            </button>
+        </div>
+
+        <!-- Final Surprise Window -->
+        <div id="surprise-card" class="card-transition card-hidden">
+            <h2 class="text-4xl font-bold text-gray-800">Will You Be Mine Forever?</h2>
+            <div class="mt-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 mx-auto text-[#ff69b4] animate-pulse" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <p class="mt-4 text-xl font-bold text-gray-800">I Love You with all my heart 💕</p>
+            <div class="mt-6">
+                <button id="yes-btn" class="btn-primary">Yes, Forever!</button>
+                <button id="no-btn" class="btn-primary ml-4">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating love quotes at the bottom -->
+    <div class="mt-8 text-center max-w-lg">
+        <p class="love-quote">"I saw that you were perfect, and so I loved you. Then I saw that you were not perfect and I loved you even more."</p>
+    </div>
+
+    <div class="hearts-container" id="hearts-container"></div>
+
+    <script>
+        const bgMusic = document.getElementById('bg-music');
+        const welcomeCard = document.getElementById('welcome-card');
+        const storyCard = document.getElementById('story-card');
+        const confessionCard = document.getElementById('confession-card');
+        const surpriseCard = document.getElementById('surprise-card');
+        const nextToStoryBtn = document.getElementById('next-to-story-btn');
+        const nextToConfessionBtn = document.getElementById('next-to-confession-btn');
+        const nextToSurpriseBtn = document.getElementById('next-to-surprise-btn');
+        const yesBtn = document.getElementById('yes-btn');
+        const noBtn = document.getElementById('no-btn');
+        const heartsContainer = document.getElementById('hearts-container');
+
+        const reasons = [
+            "Your beautiful smile that lights up my world",
+            "The way you make me feel safe and loved",
+            "Your incredible kindness and big heart",
+            "The way you care about me in the smallest details",
+            "Our endless laughter and inside jokes",
+            "The way you look at me like I'm the only person in the room",
+            "Our deep, meaningful late-night talks",
+            "The way you always support my dreams",
+            "How you make ordinary moments extraordinary",
+            "Your intelligence and the way you see the world",
+            "The sound of your voice that comforts me",
+            "Your passion and determination",
+            "The way you understand me without words",
+            "Your warmth when I'm in your embrace",
+            "Just being with you feels like home"
+        ];
+
+        // Create background hearts
+        function createHearts() {
+            for (let i = 0; i < 25; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.backgroundColor = getRandomColor();
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        function getRandomColor() {
+            const colors = ['#e91e63', '#ff69b4', '#ff85a1', '#ffc0cb', '#f8bbd0'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function showCard(cardToShow) {
+            const allCards = [welcomeCard, storyCard, confessionCard, surpriseCard];
+            allCards.forEach(card => {
+                card.classList.remove('card-visible');
+                card.classList.add('card-hidden');
+            });
+            cardToShow.classList.remove('card-hidden');
+            cardToShow.classList.add('card-visible');
+            
+            // Create sparkle effect during transition
+            createSparkles();
+        }
+
+        function createReasonCard(reason) {
+            const div = document.createElement('div');
+            div.className = "p-4 border border-pink-200 bg-pink-50 rounded-lg my-2 text-pink-700 font-bold transform transition-transform duration-500 ease-in-out hover:scale-105 opacity-0 translate-y-4 w-full";
+            div.textContent = reason;
+            return div;
+        }
+
+        // Function to animate reasons one by one
+        function animateReasons() {
+            const reasonContainer = document.getElementById('reason-container');
+            reasonContainer.innerHTML = '';
+            reasons.forEach((reason, index) => {
+                const card = createReasonCard(reason);
+                reasonContainer.appendChild(card);
+                setTimeout(() => {
+                    card.classList.remove('opacity-0', 'translate-y-4');
+                    card.classList.add('opacity-100', 'translate-y-0');
+                }, index * 400); // 400ms delay between each card
+            });
+        }
+
+        // Create sparkle effect
+        function createSparkles() {
+            for (let i = 0; i < 15; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                const size = Math.random() * 8 + 4;
+                sparkle.style.width = `${size}px`;
+                sparkle.style.height = `${size}px`;
+                sparkle.style.left = `${Math.random() * 100}%`;
+                sparkle.style.top = `${Math.random() * 100}%`;
+                sparkle.style.setProperty('--tx', `${Math.random() * 100 - 50}px`);
+                sparkle.style.setProperty('--ty', `${Math.random() * 100 - 50}px`);
+                document.querySelector('.message-box').appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1000);
+            }
+        }
+
+        // Create flying kisses
+        function createKiss(x, y) {
+            const kiss = document.createElement('div');
+            kiss.classList.add('kiss');
+            kiss.textContent = '😘';
+            kiss.style.left = `${x}px`;
+            kiss.style.top = `${y}px`;
+            kiss.style.setProperty('--end-x', `${Math.random() * 200 - 100}px`);
+            kiss.style.setProperty('--end-y', `${Math.random() * -100 - 50}px`);
+            document.body.appendChild(kiss);
+            
+            setTimeout(() => {
+                kiss.remove();
+            }, 4000);
+        }
+
+        // Heart explosion effect on "Yes" button click
+        function createHeartExplosion(x, y) {
+            const heartColors = ['#e91e63', '#ff69b4', '#ffc0cb', '#ff85a1'];
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'absolute heart';
+                heart.style.left = `${x}px`;
+                heart.style.top = `${y}px`;
+                heart.style.backgroundColor = heartColors[Math.floor(Math.random() * heartColors.length)];
+                heart.style.animation = `floatUp 1.5s ease-out forwards`;
+                heart.style.animationDelay = `${Math.random() * 0.5}s`;
+                document.body.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 2000);
+            }
+        }
+
+        // Event listeners
+        window.onload = () => {
+            createHearts();
+            bgMusic.volume = 0.5; // Set a default volume
+            // This is an alternative to auto-playing music, which is often blocked by browsers
+            document.body.addEventListener('click', () => {
+                bgMusic.play().catch(e => console.error("Audio playback blocked", e));
+            }, { once: true });
+        };
+       
+        nextToStoryBtn.addEventListener('click', () => {
+            showCard(storyCard);
+            animateReasons();
+        });
+
+        nextToConfessionBtn.addEventListener('click', () => {
+            showCard(confessionCard);
+        });
+
+        nextToSurpriseBtn.addEventListener('click', () => {
+            showCard(surpriseCard);
+        });
+
+        noBtn.addEventListener('mouseover', () => {
+            const rect = noBtn.getBoundingClientRect();
+            const newX = Math.random() * (window.innerWidth - rect.width);
+            const newY = Math.random() * (window.innerHeight - rect.height);
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${newX}px`;
+            noBtn.style.top = `${newY}px`;
+            createKiss(rect.left + rect.width / 2, rect.top + rect.height / 2);
+        });
+
+        yesBtn.addEventListener('click', (event) => {
+            const rect = yesBtn.getBoundingClientRect();
+            createHeartExplosion(rect.left + rect.width / 2, rect.top + rect.height / 2);
+            yesBtn.textContent = 'Forever Yours!';
+            noBtn.style.display = 'none'; // Hide the no button after yes is clicked.
+            
+            // Create continuous kisses
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    createKiss(
+                        Math.random() * window.innerWidth,
+                        window.innerHeight
+                    );
+                }, i * 300);
+            }
+            
+            // Change background to celebration mode
+            document.body.style.background = "linear-gradient(to right, #ff69b4, #e91e63)";
+        });
+
+        // Add sparkle effect on click anywhere
+        document.addEventListener('click', (e) => {
+            createSparkles();
+            createKiss(e.clientX, e.clientY);
+        });
+    </script>
+</body>
+</html>
