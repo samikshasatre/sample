@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Dearest Dudu </title>
+    <title>For My Dearest Dudu Bubu</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Pacifico&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -74,6 +74,13 @@
             padding: 2rem;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             border: 2px solid rgba(233, 30, 99, 0.2);
+            height: auto;
+            min-height: 500px;
+        }
+        
+        #story-card {
+            height: auto;
+            min-height: 500px;
         }
 
         .heart-icon {
@@ -236,52 +243,41 @@
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen p-4">
 
-    <!-- Background Music -->
     <audio id="bg-music" loop>
         <source src="https://archive.org/download/romantic-piano-music/RomanticPianoMusic.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
-    <!-- Header and theme description -->
     <div class="text-center mb-10">
-        <h1 class="text-5xl font-bold text-[#e91e63] font-[Pacifico] bubble">To my Dearest Dudu</h1>
+        <h1 class="text-5xl font-bold text-[#e91e63] font-[Pacifico] bubble">To my Dearest Dudu Bubu</h1>
         <p class="mt-2 text-gray-600">This is for you, with all my heart.</p>
     </div>
 
-    <!-- Main Confession Card Wrapper -->
-    <div class="message-box max-w-lg w-full text-center p-6 relative h-[500px] overflow-hidden">
-        <!-- Welcome / Intro Window -->
+    <div class="message-box max-w-lg w-full text-center p-6 relative">
         <div id="welcome-card" class="card-transition card-visible">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 mx-auto text-[#ff69b4] pulsating-heart" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
-            </svg>
-            <h2 class="text-3xl font-bold text-gray-800 mt-4">My Sweet Dudu </h2>
+            <img src="image.png" alt="Dudu Bubu" class="h-24 w-24 mx-auto bouncing-dudu" />
+            <h2 class="text-3xl font-bold text-gray-800 mt-4">My Sweet Dudu Bubu</h2>
             <p class="mt-4 text-gray-600">I've created something special just for you. Are you ready to feel all my love?</p>
             <div class="photo-frame mt-6">
-                <div class="photo-placeholder">
-                    ❤️
-                </div>
+                <img src="dudu.png" alt="Dudu Bubu" class="w-full h-full object-cover bouncing-dudu" />
             </div>
             <button id="next-to-story-btn" class="mt-6 btn-primary">
                 Begin Our Love Story
             </button>
         </div>
 
-        <!-- "Our Story" & "Reasons Why" Section -->
         <div id="story-card" class="card-transition card-hidden">
             <h2 class="text-3xl font-bold text-gray-800">Reasons I Adore You</h2>
             <p class="love-quote">"You are my sunshine, my only sunshine"</p>
             <div id="reason-container" class="mt-4 flex flex-col items-center h-64 overflow-y-auto py-2 px-4">
-                <!-- Reasons will be injected here by JS -->
-            </div>
+                </div>
             <button id="next-to-confession-btn" class="mt-6 btn-primary">
                 My Heart's Message
             </button>
         </div>
 
-        <!-- Confession Window -->
         <div id="confession-card" class="card-transition card-hidden">
-            <h2 class="text-4xl font-bold text-gray-800">My Dearest Dudu,</h2>
+            <h2 class="text-4xl font-bold text-gray-800">My Dearest Dudu Bubu,</h2>
             <div class="mt-4 text-lg text-gray-700 leading-relaxed italic text-left px-4 max-h-80 overflow-y-auto">
                 <p class="mb-4">From the moment I met you, my world became <span class="highlight">brighter</span> and so much more wonderful. You are my sunshine, my comfort, and my greatest adventure.</p>
                 <p class="mb-4">Every day with you is a new memory I cherish. You've shown me what true happiness is, and I want to spend forever making you feel as <span class="highlight">special</span> as you are to me.</p>
@@ -293,13 +289,10 @@
             </button>
         </div>
 
-        <!-- Final Surprise Window -->
         <div id="surprise-card" class="card-transition card-hidden">
             <h2 class="text-4xl font-bold text-gray-800">Will You Be Mine Forever?</h2>
             <div class="mt-6">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 mx-auto text-[#ff69b4] animate-pulse" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
-                </svg>
+                <img src="images.jpg" alt="Dudu Bubu" class="h-24 w-24 mx-auto animate-pulse" />
             </div>
             <p class="mt-4 text-xl font-bold text-gray-800">I Love You with all my heart 💕</p>
             <div class="mt-6">
@@ -309,7 +302,6 @@
         </div>
     </div>
 
-    <!-- Floating love quotes at the bottom -->
     <div class="mt-8 text-center max-w-lg">
         <p class="love-quote">"I saw that you were perfect, and so I loved you. Then I saw that you were not perfect and I loved you even more."</p>
     </div>
@@ -460,7 +452,7 @@
                 bgMusic.play().catch(e => console.error("Audio playback blocked", e));
             }, { once: true });
         };
-       
+        
         nextToStoryBtn.addEventListener('click', () => {
             showCard(storyCard);
             animateReasons();
